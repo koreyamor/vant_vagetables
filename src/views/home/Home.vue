@@ -10,6 +10,7 @@
       <FlashSale :flash_sale_product_list="flash_sale_product_list" />
       <!-- 猜你喜欢 -->
       <Youlike :you_like_product_list="you_like_product_list"/>
+      <GoTop />
     </div>
     <van-loading v-else type="spinner" color="#75a342" style="position: absolute; left: 50%; top: 40%; transform: translate(-50%)"
       >小猪正在拼命加载中...
@@ -26,6 +27,7 @@ import Sowing from './components/sowing/Sowing.vue'
 import Nav from './components/Nav/Nav.vue'
 import FlashSale from './components/flashSale/FlashSale.vue'
 import Youlike from './components/youlike/Youlike.vue'
+import GoTop from '@/components/GoTop.vue'
 
 export default {
   data() {
@@ -67,6 +69,7 @@ export default {
     Nav,
     FlashSale,
     Youlike,
+    GoTop,
   },
 }
 </script>
@@ -74,7 +77,8 @@ export default {
 <style lang="less" scoped>
 #home {
   width: 100%;
-  height: 300rem;
+  // height: 300rem;
+  padding-bottom: 50px;
   background-color: #f5f5f5;
 }
 </style>
