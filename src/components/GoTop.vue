@@ -30,7 +30,7 @@ export default {
       let temp = document.documentElement.scrollTop
       if (temp > 0) {
         setTimeout(() => {
-          document.documentElement.scrollTop = temp - 250
+          document.documentElement.scrollTop -= 250
           this.goTopFun()
         }, 10)
       } else if (temp <= 0) {
