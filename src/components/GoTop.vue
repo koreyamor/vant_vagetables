@@ -1,13 +1,40 @@
 <template>
   <div class="topBtn">
-    <van-button round type="info" class="btn">返回顶部</van-button>
+    <van-button v-if="isShow" round type="info" class="btn" @click="goTopFun()"
+      >返回顶部</van-button
+    >
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {}
+    return {
+      viewScrollTop: 0,
+      isShow: false,
+    }
+  },
+  mounted() {
+    window.onscroll = () => {
+      let viewScrollTop = document.documentElement.scrollTop
+      this.viewScrollTop = viewScrollTop
+      if (viewScrollTop > 20) {
+        this.isShow = true
+      } else {
+        this.isShow = false
+      }
+    }
+  },
+  methods: {
+    goTopFun() {
+      let temp = document.documentElement.scrollTop
+      if (temp > 0) {
+        document.documentElement.scrollTop = temp - 10
+        this.goTopFun()
+      } else if (temp <= 0) {
+        document.documentElement.scrollTop = 0
+      }
+    },
   },
 }
 </script>
