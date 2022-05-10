@@ -16,6 +16,7 @@
 
 <script>
 import YoulikeItem from './YoulikeItem.vue'
+
 export default {
   props: {
     you_like_product_list: Array || [],
@@ -51,5 +52,8 @@ export default {
   line-height: 2.1875rem;
   font-size: 1rem;
   background: #f5f5f5;
+}
+.contentWrapper{
+  margin-bottom: 4.5rem;
 }
 </style>
