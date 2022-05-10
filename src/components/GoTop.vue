@@ -29,8 +29,10 @@ export default {
     goTopFun() {
       let temp = document.documentElement.scrollTop
       if (temp > 0) {
-        document.documentElement.scrollTop = temp - 10
-        this.goTopFun()
+        setTimeout(() => {
+          document.documentElement.scrollTop = temp - 250
+          this.goTopFun()
+        }, 10)
       } else if (temp <= 0) {
         document.documentElement.scrollTop = 0
       }
