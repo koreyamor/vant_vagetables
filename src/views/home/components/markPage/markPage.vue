@@ -1,25 +1,24 @@
 <template>
-  <div class="topBtn" @click="scrollToTop">
-    <van-button round type="info" class="btn">返回顶部</van-button>
+  <div class="topBtn">
+    <van-button round type="info" class="btn" @click="scrollToTop">返回顶部</van-button>
   </div>
 </template>
 
 <script>
-import { animate } from '@/config/global';
 export default {
   data() {
     return {
-  
+      //是否显示返回顶部的按钮
+      showBackStatus: false,
+      viewScrollTop: 0,
     }
   },
-  methods:{
-    scrollToTop(){
+  methods: {
+    scrollToTop() {
       // console.log("lai");
-      //做缓动动画返回顶部
-      let  docB = document.documentElement || document.body;
-      animate(docB,{scrollToTop:'0'},400,'ease-out')
-    }
-  }
+
+    },
+  },
 }
 </script>
 

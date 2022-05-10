@@ -39,7 +39,7 @@ import FlashSale from './components/flashSale/FlashSale.vue'
 import Youlike from './components/youlike/Youlike.vue'
 import markPage from './components/markPage/markPage.vue'
 //引入 处理返回顶部的函数
-import {showBack} from '@/config/global'
+// import {showBack} from '@/config/global'
 
 export default {
   data() {
@@ -55,7 +55,7 @@ export default {
       //是否显示加载图标
       showLoading: true,
       //是否显示返回顶部的按钮
-      showBackStatus: false,
+      // showBackStatus: false,
     }
   },
   created() {
@@ -108,10 +108,10 @@ export default {
           this.showLoading = false
 
           //开始监听滚动 到达一定位置就返回显示顶部按钮
-        showBack((status)=>{
-          console.log(status);
-          this.showBackStatus = status
-        })
+        // showBack((status)=>{
+        //   console.log(status);
+        //   this.showBackStatus = status
+        // })
         }
     }
   },
