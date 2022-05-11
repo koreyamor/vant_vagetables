@@ -31,16 +31,22 @@
         </template>
       </van-tabbar-item>
     </van-tabbar>
-    <keep-alive>
-      <router-view v-if="$router.meta.keepAlive"  />
+    <keep-alive v-if="isKeep">
+      <router-view />
     </keep-alive>
-        <router-view v-if="!$router.meta.keepAlive" />
-
+    <router-view v-else />
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    isKeep() {
+      return () => {
+        this.$route.meta.keepAlive
+      }
+    },
+  },
   data() {
     return {
       active: 0,
