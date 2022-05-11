@@ -1,6 +1,6 @@
 <template>
   <div class="topBtn">
-    <van-button v-if="showBackStatus" round type="info" class="btn" @click="scrollToTop"
+    <van-button v-if="isShow" round type="info" class="btn" @click="goTopFun()"
       >返回顶部</van-button
     >
   </div>
@@ -10,31 +10,28 @@
 export default {
   data() {
     return {
-      //是否显示返回顶部的按钮
-      showBackStatus: false,
       viewScrollTop: 0,
+      isShow: false,
     }
   },
   mounted() {
     window.onscroll = () => {
       let viewScrollTop = document.documentElement.scrollTop
       this.viewScrollTop = viewScrollTop
-      console.log(viewScrollTop);
-      if (viewScrollTop > 200) {
-        this.showBackStatus = true
+      if (viewScrollTop > 20) {
+        this.isShow = true
       } else {
-        this.showBackStatus = false
+        this.isShow = false
       }
     }
   },
   methods: {
-    scrollToTop() {
-      // console.log("lai");
+    goTopFun() {
       let temp = document.documentElement.scrollTop
       if (temp > 0) {
         setTimeout(() => {
           document.documentElement.scrollTop -= 250
-          this.scrollToTop()
+          this.goTopFun()
         }, 10)
       } else if (temp <= 0) {
         document.documentElement.scrollTop = 0

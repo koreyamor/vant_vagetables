@@ -28,11 +28,13 @@ export default new Router({
                     path: 'home',
                     name: 'home',
                     component: Home,
+                    meta: { keepAlive:true }
                 },
                 {
                     path: 'category',
                     name: 'category',
                     component: Category,
+                    meta: { keepAlive:true }
                 },
                 {
                     path: 'cart',

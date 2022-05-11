@@ -1,7 +1,7 @@
 <template>
   <div id="dashboard">
     <van-tabbar v-model="active" active-color="#75a342">
-      <van-tabbar-item replace to="/dashboard/home" >
+      <van-tabbar-item replace to="/dashboard/home">
         <span>首页</span>
         <template #icon="props">
           <img :src="props.active ? home_icon.active : home_icon.inactive" />
@@ -11,7 +11,9 @@
       <van-tabbar-item replace to="/dashboard/category">
         <span>分类</span>
         <template #icon="props">
-          <img :src="props.active ? category_icon.active : category_icon.inactive" />
+          <img
+            :src="props.active ? category_icon.active : category_icon.inactive"
+          />
         </template>
       </van-tabbar-item>
 
@@ -29,7 +31,11 @@
         </template>
       </van-tabbar-item>
     </van-tabbar>
-    <router-view />
+    <keep-alive>
+      <router-view v-if="$router.meta.keepAlive"  />
+    </keep-alive>
+        <router-view v-if="!$router.meta.keepAlive" />
+
   </div>
 </template>
 

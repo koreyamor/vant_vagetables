@@ -11,7 +11,7 @@
       <!-- 猜你喜欢 -->
       <Youlike :you_like_product_list="you_like_product_list" />
       <!-- 返回顶部 -->
-      <markPage v-if="showBackStatus" />
+      <markPage />
     </div>
     <van-loading
       v-else
