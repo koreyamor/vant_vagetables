@@ -121,7 +121,8 @@ export default {
 <style lang="less" scoped>
 #home {
   width: 100%;
-  height: 300rem;
+  // height: 300rem;
+  padding-bottom: 50px;
   background-color: #f5f5f5;
 }
 </style>

@@ -1,14 +1,19 @@
 <template>
   <div class="topBtn">
+<<<<<<< HEAD
     <van-button v-if="isShow" round type="info" class="btn" @click="goTopFun()"
       >返回顶部</van-button
     >
+=======
+    <van-button round type="info" class="btn">返回顶部</van-button>
+>>>>>>> b16762391fcffaf4dab1ab0e548b9b6e819940c4
   </div>
 </template>
 
 <script>
 export default {
   data() {
+<<<<<<< HEAD
     return {
       viewScrollTop: 0,
       isShow: false,
@@ -37,6 +42,9 @@ export default {
         document.documentElement.scrollTop = 0
       }
     },
+=======
+    return {}
+>>>>>>> b16762391fcffaf4dab1ab0e548b9b6e819940c4
   },
 }
 </script>
