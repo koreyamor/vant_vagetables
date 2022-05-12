@@ -31,25 +31,15 @@
         </template>
       </van-tabbar-item>
     </van-tabbar>
-    <keep-alive v-if="isKeep">
       <router-view />
-    </keep-alive>
-    <router-view v-else />
   </div>
 </template>
 
 <script>
 export default {
-  computed: {
-    isKeep() {
-      return () => {
-        this.$route.meta.keepAlive
-      }
-    },
-  },
   data() {
     return {
-      active: 0,
+      active:Number( sessionStorage.getItem ('tabBarActiveIndex')) || 0,
       home_icon: {
         active: require('@/images/tabbar/home_default.png'),
         inactive: require('@/images/tabbar/home_selected.png'),
@@ -68,6 +58,14 @@ export default {
       },
     }
   },
+  watch:{
+    active(value){
+      // console.log(value);
+      let tabBarActiveIndex = value > 0 ? value : 0
+      //缓存到本地
+      sessionStorage.setItem('tabBarActiveIndex',value)
+    }
+  }
 }
 </script>
 

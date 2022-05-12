@@ -38,8 +38,11 @@ import Nav from './components/Nav/Nav.vue'
 import FlashSale from './components/flashSale/FlashSale.vue'
 import Youlike from './components/youlike/Youlike.vue'
 import markPage from './components/markPage/markPage.vue'
-//引入 处理返回顶部的函数
-// import {showBack} from '@/config/global'
+
+//引入通知插件
+import Pubsub from 'pubsub-js'
+//引入Vuex
+import {mapMutations} from 'vuex'
 
 export default {
   data() {
@@ -54,15 +57,12 @@ export default {
       you_like_product_list: [],
       //是否显示加载图标
       showLoading: true,
-      //是否显示返回顶部的按钮
-      // showBackStatus: false,
+
     }
   },
   created() {
     //2.请求网络数据
     this.reqData()
-
-
     // getHomeData()
     //   .then((response) => {
     //     console.log(response)
@@ -86,6 +86,19 @@ export default {
     //     console.log(error)
     //   })
   },
+  mounted(){
+    //订阅添加到购物车的消息
+    Pubsub.subscribe('homeAddToCart',(msg,goods)=>{
+      if(msg === homeAddToCart) {
+        this.ADD_GOODS({
+          goodsId:goods.id,
+          goodsName:goods.name,
+          smallImage:goods.small_image,
+          goodsPrice:goods.price,
+        })
+      }
+    })
+  },
   components: {
     Header,
     Sowing,
@@ -95,6 +108,7 @@ export default {
     markPage,
   },
   methods: {
+    ...mapMutations(["ADD_GOODS"]),
     async reqData(){
      let res =  await getHomeData()
     //  console.log(res);
@@ -121,8 +135,7 @@ export default {
 <style lang="less" scoped>
 #home {
   width: 100%;
-  // height: 300rem;
-  padding-bottom: 50px;
+  height: 300rem;
   background-color: #f5f5f5;
 }
 </style>

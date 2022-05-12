@@ -19,7 +19,7 @@ export default {
     window.onscroll = () => {
       let viewScrollTop = document.documentElement.scrollTop
       this.viewScrollTop = viewScrollTop
-      console.log(viewScrollTop);
+      // console.log(viewScrollTop);
       if (viewScrollTop > 200) {
         this.showBackStatus = true
       } else {
