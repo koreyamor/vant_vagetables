@@ -46,6 +46,12 @@ import BScroll from 'better-scroll'
 //引入接口
 import { getCategories, getCategoriesDetail } from './../../service/api/index'
 
+//引入通信插件
+import Pubsub from 'pubsub-js'
+//引入提示插件
+import {Toast} from 'vant'
+
+
 export default {
   data() {
     return {
@@ -61,6 +67,25 @@ export default {
   },
   created() {
     this.initData()
+  },
+   mounted(){
+    //订阅添加到购物车的消息
+    Pubsub.subscribe('categoryAddToCart',(msg,goods)=>{
+      if(msg === "categoryAddToCart") {
+        this.ADD_GOODS({
+          goodsId:goods.id,
+          goodsName:goods.name,
+          smallImage:goods.small_image,
+          goodsPrice:goods.price,
+        })
+        //提示用户
+        Toast({
+          message:'添加到购物车成功!',
+          duration:800
+          
+        })
+      }
+    })
   },
   components: {
     Header,

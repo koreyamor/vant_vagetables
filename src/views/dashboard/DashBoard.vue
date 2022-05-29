@@ -17,7 +17,11 @@
         </template>
       </van-tabbar-item>
 
-      <van-tabbar-item replace to="/dashboard/cart">
+      <van-tabbar-item
+        replace
+        to="/dashboard/cart"
+        :badge="goodsNum > 0 ? goodsNum : ''"
+      >
         <span>购物车</span>
         <template #icon="props">
           <img :src="props.active ? cart_icon.active : cart_icon.inactive" />
@@ -31,15 +35,16 @@
         </template>
       </van-tabbar-item>
     </van-tabbar>
-      <router-view />
+    <router-view />
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      active:Number( sessionStorage.getItem ('tabBarActiveIndex')) || 0,
+      active: Number(sessionStorage.getItem('tabBarActiveIndex')) || 0,
       home_icon: {
         active: require('@/images/tabbar/home_default.png'),
         inactive: require('@/images/tabbar/home_selected.png'),
@@ -58,14 +63,37 @@ export default {
       },
     }
   },
-  watch:{
-    active(value){
+  watch: {
+    active(value) {
       // console.log(value);
       let tabBarActiveIndex = value > 0 ? value : 0
       //缓存到本地
-      sessionStorage.setItem('tabBarActiveIndex',value)
-    }
-  }
+      sessionStorage.setItem('tabBarActiveIndex', value)
+    },
+  },
+  computed: {
+    ...mapState(['shopCart']),
+    goodsNum() {
+      if (this.shopCart) {
+        //总的购物车商品数量
+        let num = 0
+        console.log(Object.values(this.shopCart))
+        Object.values(this.shopCart).forEach((goods, index) => {
+          num += goods.num
+        })
+        return num
+      } else {
+        return 0
+      }
+    },
+  },
+  mounted() {
+    //获取购物车数据
+    this.INIT_SHOP_CART()
+  },
+  methods: {
+    ...mapMutations(['INIT_SHOP_CART']),
+  },
 }
 </script>
 

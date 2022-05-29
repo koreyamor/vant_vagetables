@@ -39,8 +39,11 @@ import FlashSale from './components/flashSale/FlashSale.vue'
 import Youlike from './components/youlike/Youlike.vue'
 import markPage from './components/markPage/markPage.vue'
 
-//引入通知插件
+//引入通信插件
 import Pubsub from 'pubsub-js'
+//引入提示插件
+import {Toast} from 'vant'
+
 //引入Vuex
 import {mapMutations} from 'vuex'
 
@@ -89,12 +92,18 @@ export default {
   mounted(){
     //订阅添加到购物车的消息
     Pubsub.subscribe('homeAddToCart',(msg,goods)=>{
-      if(msg === homeAddToCart) {
+      if(msg === "homeAddToCart") {
         this.ADD_GOODS({
           goodsId:goods.id,
           goodsName:goods.name,
           smallImage:goods.small_image,
           goodsPrice:goods.price,
+        })
+        //提示用户
+        Toast({
+          message:'添加到购物车成功!',
+          duration:800
+          
         })
       }
     })

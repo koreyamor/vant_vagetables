@@ -9,7 +9,7 @@
             <div class="originPrice">{{product.origin_price | moneyFormat}}</div>
             <div class="priceWrapper">
                 <div class="price">{{product.price | moneyFormat}}</div>
-                <div class="iconCartWrapper">
+                <div class="iconCartWrapper" @click="addToCart(product)">
                     <svg viewBox="0 0 52 52" class="icon icon-60">
                         <defs>
                             <radialGradient cx="27.0288363%" cy="10.3693483%" fx="27.0288363%" fy="10.3693483%" r="93.8427229%" id="radialGradient-1"><stop stop-color="#4ECA75" offset="0%"></stop><stop stop-color="#39B460" offset="100%"></stop></radialGradient>
@@ -32,9 +32,15 @@
 </template>
 
 <script>
+import Pubsub from 'pubsub-js'
 export default {
 props:{
     product:Object
+},
+methods:{
+    addToCart(goods){
+        Pubsub.publish('homeAddToCart', goods)
+    }
 }
 }
 </script>

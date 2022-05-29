@@ -207,7 +207,7 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
 export const setStore = (name, content) =>{
     if(!name) return;
     if(typeof content !== 'string'){
-        content = JSON.stringify(content);
+        content = JSON.stringify(content);//JS类型转成字符串
     }
     window.localStorage.setItem(name, content);
 };
@@ -227,3 +227,4 @@ export const  removeStore = (name)=>{
     if(!name) return;
     return window.localStorage.removeItem(name);
 };
+

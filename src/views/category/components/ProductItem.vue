@@ -21,7 +21,7 @@
         <div class="price">
           {{ product.price | moneyFormat }}
         </div>
-        <div class="iconCartWrapper">
+        <div class="iconCartWrapper" @click="addToCart(product)">
           <svg viewBox="0 0 52 52" class="icon iconCart">
             <defs>
               <radialGradient
@@ -68,10 +68,18 @@
 </template>
 
 <script>
+
+import Pubsub from 'pubsub-js'
+
 export default {
   props: {
     products: Array,
   },
+  methods:{
+    addToCart(goods){
+        Pubsub.publish('homeAddToCart', goods)
+    }
+}
 }
 </script>
 
